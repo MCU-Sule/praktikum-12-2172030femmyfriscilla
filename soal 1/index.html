@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Femmy Friscilla Susilo 2172030">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <title>Soal 1</title>
+</head>
+<style>
+    *{
+        margin :0;padding:0
+    }
+    #edit{
+        width: 450px;
+        margin: auto;
+        margin-top: 20px;
+    }
+    #lebar{
+        width: 300px;
+        height: 27px;
+        margin-left: 50px;
+    }
+    #tombol{
+        height: 30px;
+        margin-left: 328px;
+        margin-bottom:20px;
+    }
+    #datas{
+        height: 50px;
+        background-color: rgb(153,241,207);
+        margin-top: 60px;
+        text-align: center;
+        padding-top: 10px;
+        font-size: 35px;
+    }
+    #datus{
+        height: 50px;
+        background-color: rgb(153,241,207);
+        text-align: center;
+    }
+    #dates{
+        height: 30px;
+        background-color: rgb(153,241,207);
+        text-align: center;
+        font-size: 20px;
+    }
+    legend{
+        margin-left: 10px;
+    }
+</style>
+<body>   
+    <form action="" id="edit">
+        <fieldset>
+            <legend>City</legend>
+            <br>
+            &nbsp;&nbsp;&nbsp; Name : 
+            <select name="lebar" id="lebar" >
+                <script>
+                    $.getJSON("cityList.json", function isian (result){
+                        console.log(result);
+                        for (let a=0 ; a<result.city.length;a++){
+                            console.log(result.city[a].name)                           
+                                $("#lebar").append("<option id='isian' value='"+result.city[a].name+"'>" +result.city[a].name+"</option>")
+                        }
+                    });
+                    
+                </script>
+            </select><br>
+            
+            <input type="button" id="tombol" onclick= hasilakhir() value="Submit Query">
+        </fieldset>
+    </form>
+    <div id="datas" class="ihuy"></div>
+    <div id="datus" class="ihiy"></div>
+    <div id="dates" class="ihiy"></div>
+    <script>
+        function hasilakhir(){
+            let opse = document.getElementById("lebar").value;
+            console.log(opse)
+            $("#datas").empty()
+            $("#datus").empty()
+            $("#dates").empty()
+            $.getJSON("cityLIst.json", function(result){
+                for(f=0;f<result.city.length;f++){
+                    let yey = result.city[f].name.includes(opse)
+                    if(yey == true){
+                        let ya = result.city[f].id
+                        let yi = result.city[f].country
+                        let yu = result.city[f].coord.lon
+                        let ye = result.city[f].coord.lat
+                        
+                        console.log(result.city[f].id)
+                        
+                        document.getElementById("datas").append("City Name " +opse)
+                        document.getElementById("datas").append(" ("+ya+")")
+                        document.getElementById("datus").append("Country "+yi)
+                        document.getElementById("dates").append("Coordinates (lat,lon): ")
+                        document.getElementById("dates").append(ye +", "+yu)
+                        
+                    }
+                    
+                }
+                
+                    
+                    })
+            
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Femmy Friscilla Susilo 2172030">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <title>Soal 2</title>
+</head>
+<style>
+    #foto{
+        height: 100px;
+    }
+    #editTombol{
+        margin-left: 400px;
+        width: 800px;
+    }
+    #isian{
+        background-color: black;
+        margin-top: 50px;
+        width: 1000px;
+        margin-left: 300px;
+        padding-bottom: 15px;
+        
+    }
+    #isian2,#isian3{
+        background-color: black;
+        width: 1000px;
+        margin: auto;
+        margin-left: 300px;
+        padding-bottom: 15px;
+    }
+    #namae,#namae2,#namae3{
+        color: rgb(255,189,2);
+        margin-left: 150px;
+        background-color: rgb(112,87,3);
+        width: 750px;
+        height: 20px;
+        font-size: 20px;
+        padding-top: 10px;
+        padding-bottom: 5px;
+        padding-left: 8px;
+        font-weight: bold;
+    }
+    #deskripsi,#deskripsi2,#deskripsi3{
+        color:white;
+        width: 800px;
+        border: solid rgb(255,189,2) 1px ;
+        margin-left: 150px;
+        border-top: none;
+    }
+    #foto,#foto2,#foto3{
+        border: solid 1px rgb(241,122,26);
+        width: 50px; height: 50px;
+        border-radius: 8px;
+        margin-left: 100px;
+    }
+    img{
+        width: 50px;
+    }
+
+</style>
+<body>
+    <script>
+        function tombol (){
+            $.getJSON("league.json", function (result){
+            console.log(result)
+            for (let a=0 ; a<result.length; a++){
+                console.log(result[a].name)   
+            }
+            let acak = Math.floor(Math.random()*result.length)
+                let namas = result[acak].name
+                console.log(namas)
+                document.getElementById("namae").innerHTML = namas
+                document.getElementById("deskripsi").innerHTML = result[acak].description
+                document.getElementById("foto").innerHTML = "<img src='"+result[acak].icon+"'></img>"
+
+            let acak2 = Math.floor(Math.random()*result.length)
+                let namas2 = result[acak2].name
+                console.log(namas2)
+                document.getElementById("namae2").innerHTML = namas2
+                document.getElementById("deskripsi2").innerHTML = result[acak2].description
+                document.getElementById("foto2").innerHTML = "<img src='"+result[acak2].icon+"'></img>"
+
+            let acak3 = Math.floor(Math.random()*result.length)
+                let namas3 = result[acak3].name
+                console.log(namas3)
+                document.getElementById("namae3").innerHTML = namas3
+                document.getElementById("deskripsi3").innerHTML = result[acak3].description
+                document.getElementById("foto3").innerHTML = "<img src='"+result[acak3].icon+"'></img>"
+        })
+        }
+        
+    </script>
+    <button onclick="tombol()" id="editTombol"> Find me 3 random Champion </button>
+    <div id="isian">
+        <div id="foto"></div>
+        <div id="namae"></div>
+        <div id="deskripsi"></div>
+    </div>
+    <div id="isian2">
+        <div id="foto2"></div>
+        <div id="namae2"></div>
+        <div id="deskripsi2"></div>
+    </div>
+    <div id="isian3">
+        <div id="foto3"></div>
+        <div id="namae3"></div>
+        <div id="deskripsi3"></div>
+    </div>
+    
+</body>
+</html> 
